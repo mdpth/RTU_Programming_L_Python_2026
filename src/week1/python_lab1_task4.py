@@ -57,30 +57,45 @@ Examples (these are also used to check your work):
 
 def count_characters(text: str) -> int:
     """Count characters that are not whitespace."""
-    # TODO: implement
-    raise NotImplementedError("count_characters() is not implemented yet")
+    character_c = len("".join(text.split()))
+    return character_c
 
 
 def count_words(text: str) -> int:
     """Count number of whitespace-separated words."""
-    # TODO: implement
-    raise NotImplementedError("count_words() is not implemented yet")
+    word_c = len(text.split())
+    return word_c
 
 
 def extract_numbers(text: str) -> list[int]:
     """Return a list of the integers found in text, in order."""
-    # TODO: implement
-    raise NotImplementedError("extract_numbers() is not implemented yet")
+    ex_numbers = []
+    for x in text.split():
+        x = x.rstrip(".,!?;:")
+        if x.isdigit() or (x.startswith("-") and x[1:].isdigit()):
+            ex_numbers.append(int(x))
+    return ex_numbers
 
 
 def analyze_text(text: str) -> dict:
     """Return a dict with characters, words, numbers, sum and average."""
-    # TODO: call the helper functions and compute sum and average
-    raise NotImplementedError("analyze_text() is not implemented yet")
+    test = {
+        "characters": count_characters(text),
+        "words": count_words(text),
+        "numbers": extract_numbers(text),
+        "sum": sum(extract_numbers(text)) if extract_numbers(text) else 0.0,
+        "average": (
+            (sum(extract_numbers(text)) / len(extract_numbers(text)))
+            if len(extract_numbers(text)) != 0
+            else 0.0
+        ),
+    }
+    return test
 
 
 if __name__ == "__main__":
-    # Keep all input() calls inside this block, otherwise the autograder
-    # cannot import your file.
-    # TODO: read input, call analyze_text(), and print results
-    pass
+    user_input = input("Enter text: ")
+    final = analyze_text(user_input)
+    print(
+        f"Characters(no spaces): {final['characters']}\nWords: {final['words']}\nNumbers: {final['numbers']}\nSum: {final['sum']}\nAverage: {final['average']:.2f}"
+    )
