@@ -53,14 +53,19 @@ Examples (these are also used to check your work):
 
 def average(values: list[float]) -> float:
     """Return the average of values, or 0.0 for an empty list."""
-    # TODO: implement
-    raise NotImplementedError("average() is not implemented yet")
+    if values:
+        return sum(values) / len(values)
+    else:
+        return 0.0
 
 
 def largest_city(populations: dict[str, int]) -> tuple[str, int]:
     """Return (city, population) for the city with the largest population."""
-    # TODO: implement
-    raise NotImplementedError("largest_city() is not implemented yet")
+    if populations:
+        city = max(populations, key=populations.get)
+    else:
+        return " ", 0
+    return city, populations[city]
 
 
 def smallest_city(populations: dict[str, int]) -> tuple[str, int]:
@@ -76,12 +81,19 @@ def total_population(populations: dict[str, int]) -> int:
 
 
 if __name__ == "__main__":
-    # Keep all input() and print() calls inside this block, otherwise the
-    # autograder cannot import your file.
+    temperatures = ["18", "15", "10", "5", "7", "3", "6"]
+    city_population = {
+        "Columbia": 107315,
+        "Baltimore": 566686,
+        "Washington": 158322,
+        "Frederick": 94796,
+        "Annapolis": 40559,
+    }
 
-    # TODO: Create your own datasets - up to you to fill in the data
-    temperatures = []
-    city_population = {}
+    temps_asFloat = [float(x) for x in temperatures]
+    avg = average(temps_asFloat)
+    print("Average temperature: {:.1f}".format(avg))
 
-    # TODO: call the functions above and print the results
-    pass
+    # citypop_asTuple = tuple(city_population.items())
+    ctypop = largest_city(city_population)
+    print(f"Largest city: {ctypop}")
