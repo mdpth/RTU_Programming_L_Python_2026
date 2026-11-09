@@ -62,22 +62,27 @@ def average(values: list[float]) -> float:
 def largest_city(populations: dict[str, int]) -> tuple[str, int]:
     """Return (city, population) for the city with the largest population."""
     if populations:
-        city = max(populations, key=populations.get)
+        larg_city = max(populations, key=populations.get)
     else:
-        return " ", 0
-    return city, populations[city]
+        return "", 0
+    return larg_city, populations[larg_city]
 
 
 def smallest_city(populations: dict[str, int]) -> tuple[str, int]:
     """Return (city, population) for the city with the smallest population."""
-    # TODO: implement
-    raise NotImplementedError("smallest_city() is not implemented yet")
+    if populations:
+        small_city = min(populations, key=populations.get)
+    else:
+        return "", 0
+    return small_city, populations[small_city]
 
 
 def total_population(populations: dict[str, int]) -> int:
     """Return the sum of all populations."""
-    # TODO: implement
-    raise NotImplementedError("total_population() is not implemented yet")
+    pop_sum = 0
+    for pop in populations.values():
+        pop_sum += pop
+    return pop_sum
 
 
 if __name__ == "__main__":
@@ -94,6 +99,5 @@ if __name__ == "__main__":
     avg = average(temps_asFloat)
     print("Average temperature: {:.1f}".format(avg))
 
-    # citypop_asTuple = tuple(city_population.items())
     ctypop = largest_city(city_population)
     print(f"Largest city: {ctypop}")

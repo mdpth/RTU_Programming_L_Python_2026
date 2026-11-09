@@ -57,40 +57,42 @@ QUANTITIES = [2, 5, 1, 3, 4]
 
 # ---------- Part A: functional style ----------
 
+
 def item_totals(prices: list[float], quantities: list[int]) -> list[float]:
     """Return price * quantity for each item, using map() and a lambda."""
-    # TODO: implement with map()
-    raise NotImplementedError("item_totals() is not implemented yet")
+    return list(map(lambda a, b: a * b, prices, quantities))
 
 
 def filter_above(totals: list[float], threshold: float = 30) -> list[float]:
     """Return totals greater than threshold, using filter() and a lambda."""
-    # TODO: implement with filter()
-    raise NotImplementedError("filter_above() is not implemented yet")
+    return list(filter(lambda a: a > threshold, totals))
 
 
 def pair_up(prices: list[float], quantities: list[int]) -> list[tuple]:
     """Return a list of (price, quantity) tuples, using zip()."""
-    # TODO: implement with zip()
-    raise NotImplementedError("pair_up() is not implemented yet")
+    return list(zip(prices, quantities))
 
 
 # ---------- Part B: list comprehensions ----------
 
+
 def item_totals_comp(prices: list[float], quantities: list[int]) -> list[float]:
     """Same as item_totals(), but with a list comprehension."""
-    # TODO: implement with a list comprehension
-    raise NotImplementedError("item_totals_comp() is not implemented yet")
+    return [a * b for a, b in zip(prices, quantities)]
 
 
 def filter_above_comp(totals: list[float], threshold: float = 30) -> list[float]:
     """Same as filter_above(), but with a list comprehension."""
-    # TODO: implement with a list comprehension
-    raise NotImplementedError("filter_above_comp() is not implemented yet")
+    return [a for a in totals if a > threshold]
 
 
 if __name__ == "__main__":
-    # Keep all input() and print() calls inside this block, otherwise the
-    # autograder cannot import your file.
-    # TODO: call every function with PRICES and QUANTITIES and print results
-    pass
+    fun_itot = item_totals(PRICES, QUANTITIES)
+    fun_abov = filter_above(PRICES)
+    fun_pair = pair_up(PRICES, QUANTITIES)
+    comp_itot = item_totals_comp(PRICES, QUANTITIES)
+    comp_abov = filter_above_comp(PRICES)
+
+    print(
+        f"Totals: {fun_itot}\nTotals > 30: {fun_abov}\nPrice-quantity pairs: {fun_pair}\nTotals (comprehension): {comp_itot}\nTotals > 30 (comprehension): {comp_abov}"
+    )
